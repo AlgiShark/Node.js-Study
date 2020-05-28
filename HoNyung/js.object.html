@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+</body>
+</html>
+<script type="text/javascript">
+	/*
+	배열은 인덱스를 숫자로 사용하지만 만약 문자로 사용하고싶으면 객체(Dictionary)를 사용해야한다.
+	*/
+	// var grades = ['egoing' : 10, 'k8805' : 6, 'sorialgi' : 80];
+	// 위 문장은 틀린 문장이다. 배열 선언 시 [] 문자를, 객체 선언 시 {} 을 사용한다
+	var grades = {'egoing' : 10, 'k8805' : 6, 'sorialgi' : 80};
+	alert(grades.sorialgi);
+	alert(grades["sorialgi"]);
+	for(key in grades){
+		document.write("key " + key + "value " + grades[key] + "<br>");
+	}
+</script>

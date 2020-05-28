@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+</body>
+</html>
+<script type="text/javascript">
+function Person(name){
+	this.name = name;
+	this.introduce = function(){
+		return 'My name is ' + this.name;
+	}
+}
+var p1 = new Person('Heo');
+// 생성자는 일반적으로 클래스의 소속이지만 자바스크립트에선 함수가 객체를 만드는 주체가 된다
+
+// 모든 전역변수와 함수는 window 객체의 프로퍼티로, 객체를 명시하지 않으면 암시적으로 window의 프로퍼티로 간주된디
+
+var o = {'func' : function(){
+	alert('Hello');
+}}
+o.func();
+window.o.func();
+
+/*
+메소드가 객체에 강하게 종속되는 다른 객체 지향 언어와 달리
+자바스크립트에서의 함수는 매우 유연한데 함수를 어떻게 호출하느냐에 따라
+여러 객체에 각각 종속될 수 있으며 함수 자체로도 객체가 된다.
+
+함수가 누구의 소속이냐에 따라 this의 값은 달라진다. 변화무쌍한 this!
+*/
+
+function Person(name){
+	this.name = name;
+}
+Person.prototype.name = null;
+Person.prototype.introduce = function() {
+	return 'My name is ' + this.name;
+}
+
+var p1 = new Person('egoing');
+
+function Programmer(name){
+	this.name = name;
+}
+Programmer.prototype = new Person();
+Programmer.prototype.coding = function() {
+	return "Hello world";
+}
+
+var p2 = new Programmer('egoing');
+document.write(p1.introduce() + "<br>");
+document.write(p1.coding());
+
+</script>
