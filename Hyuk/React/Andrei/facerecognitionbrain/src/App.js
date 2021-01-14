@@ -5,6 +5,8 @@ import Logo from './components/Logo/Logo';
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import Rank from './components/Rank/Rank';
 import Particles from 'react-particles-js';
+import Signin from './components/Signin/Signin';
+import Register from './components/Register/Register';
 
 const particlesOptions = {
   particles: {
@@ -23,13 +25,24 @@ class App extends Component {
     super();
     this.state = {
       input: '',
+      route: 'signin',
+      isSignedIn: false,
     }
   }
 
   onInputChange = (event) => {
     console.log(event);
   }
-  
+
+  onRouteChange = (route) => {
+    if (route === 'signin') {
+      this.setState({ isSignedIn: false });
+    } else if (route === 'home') {
+      this.setState({ isSignedIn: true });
+    }
+    this.setState({ route: route });
+  }
+
 
   render() {
     return (
@@ -38,13 +51,18 @@ class App extends Component {
           className='particles'
           params={particlesOptions}
         />
-        <Navigation />
-        <Logo />
-        <Rank />
-        <ImageLinkForm onInputChange={this.onInputChange}/>
-        {/*
-      <FaceRecoginition />
-      */}
+        <Navigation onRouteChange={this.onRouteChange} isSignedIn={this.state.isSignedIn}/>
+        { this.state.route === 'signin' ?
+          <Signin onRouteChange={this.onRouteChange} /> : (
+            this.state.route === 'register' ?
+              <Register onRouteChange={this.onRouteChange} /> :
+              <div>
+                <Logo />
+                <Rank />
+                <ImageLinkForm onInputChange={this.onInputChange} />
+              </div>
+          )
+        }
       </div>
     );
   }
