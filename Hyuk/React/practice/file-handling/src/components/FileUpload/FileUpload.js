@@ -23,7 +23,7 @@ class FileUpload extends Component {
             "content-type": "multipart/form-data"
           }
         };
-        return axios.post("/api/upload", formData, config).then(res => {
+        return axios.post("http://220.67.126.27:3000/upload", formData, config).then(res => {
             alert('성공')
           }).catch(err => {
             alert('실패')
@@ -32,9 +32,9 @@ class FileUpload extends Component {
 
     render() {
         return (
-            <div>
-                <input type="file" multiple onChange={this.fileChangedHandler}></input>
-                <button onClick={this.onClickHandler}>전송하기</button>
+            <div className='form center pa4 br3 shadow-5'>
+                <input className='f4 pa2 w-70 center' type="file" multiple onChange={this.fileChangedHandler}></input>
+                <button className='w-30 grow f4 link ph3 pv2 dib white bg-light-purple' onClick={this.onClickHandler}>전송하기</button>
             </div>
             
         );
