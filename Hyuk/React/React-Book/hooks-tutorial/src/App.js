@@ -7,7 +7,7 @@ import React, { useState } from 'react';
 function App() {
   const [visible, setVisible] = useState(false);
   return (
-    <Average />
+    <Info/>
   );
 }
 
